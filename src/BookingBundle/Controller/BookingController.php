@@ -10,12 +10,15 @@ namespace BookingBundle\Controller;
 
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 class BookingController extends Controller
 {
     /**
      * Page de réservation
      * @Route("/", name="booking")
+     * @Template("default/index.html.twig")
      */
     public function indexAction()
     {
