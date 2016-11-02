@@ -1,13 +1,62 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+<head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}Bienvenue sur la billetterie du musée du Louvre!{% endblock %}</title>
+    {% block stylesheets %}{% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+    <!-- Font Awesome and Pixeden Icon Stroke icon fonts-->
+    <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/pe-icon-7-stroke.css') }}">
+    <!-- Google fonts - Roboto-->
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,700">
+    <!-- lightbox-->
+    <link rel="stylesheet" href="{{ asset('css/lightbox.min.css') }}">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="{{ asset('css/style.default.css') }}" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
+    <!-- Datepicker-->
+    <link rel="stylesheet" href="{{ asset('css/bootstrap-datepicker.css') }}">
+</head>
+<body>
+<header class="header">
+    <div role="navigation" class="navbar navbar-default">
+        <div class="container">
+            <div class="navbar-header"><a href="index.html" class="navbar-brand">Musée du louvre</a>
+                <div class="navbar-buttons">
+                    <button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle navbar-btn">Menu<i class="fa fa-align-justify"></i></button>
+                </div>
+            </div>
+            <div id="navigation" class="collapse navbar-collapse navbar-right">
+                <ul class="nav navbar-nav">
+                </ul><a href="#" class="btn navbar-btn btn-ghost"><i class="fa fa-sign-in"></i>Retour sur le site</a>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="jumbotron main-jumbotron">
+    <div class="container">
+        <div class="content">
+            <h1>Réservation des billets</h1>
+            <p class="margin-bottom">Commander directement vos billets !</p>
+            <p><a class="btn btn-white">Voir les tarifs</a></p>
+        </div>
+    </div>
+</div>
+
+{% block body %}{% endblock %}
+<!-- Javascript files-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="{{ asset('js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('js/jquery.cookie.js') }}"> </script>
+<script src="{{ asset('js/lightbox.min.js') }}"></script>
+<script src="{{ asset('js/front.js') }}"></script>
+<script src="{{ asset('js/bootstrap-datepicker.js') }}"></script>
+<script src="{{ asset('locales/bootstrap-datepicker.fr.min.js') }}"></script>
+{% block javascripts %}{% endblock %}
+</body>
 </html>
