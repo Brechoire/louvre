@@ -22,6 +22,6 @@ class BookingController extends Controller
      */
     public function indexAction()
     {
-
+        dump($_POST);
     }
 }

@@ -4,40 +4,65 @@
     <section>
         <div class="container">
 
+            <!-- Start Form -->
             <form action="#" method="post">
-                <div class="col-md-3">
-                    <h2>Date de la visite</h2>
-                    <div class="datepicker" id="datepicker" data-date="{{ "now"|date("d/m/Y") }}"></div>
-                </div>
 
-                <div class="col-md-6">
-                    <h2>Durée de la visite & nombre de billets</h2>
+                <!-- Start col-md-6 -->
+                <div class="col-md-6 dc">
 
+                    <h3>Date de la visite</h3>
 
-                    <div class="radio">
-                        <label>
-                            <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-                            Billet pour la journée <i data-toggle="tooltip" data-placement="top" title="De 09h00 à 18h00" class="fa fa-question-circle"></i>
-                        </label>
-                    </div>
-                    <div class="radio">
-                        <label>
-                            <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-                            Billet pour la demi-journée  <i data-toggle="tooltip" data-placement="top" title="De 14h00 à 18h00" class="fa fa-question-circle"></i>
-                        </label>
+                    <div class="form-group">
+                        <div class="datepicker" id="datepicker" name="bookingDate" data-date="{{ "now"|date("d/m/Y") }}"></div>
+                        <div class="input-group date">
+                            <input type="text" class="form-control" data-date="{{ "now"|date("d/m/Y") }}">
+                        <span class="input-group-addon">
+                            <i class="fa fa-calendar"></i>
+                        </span>
+                        </div>
                     </div>
 
+                    <h3>Durée de la visite & nombre de billets</h3>
+
+                    <div class="form-group">
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+                                Billet pour la journée <i data-toggle="tooltip" data-placement="top" title="De 09h00 à 18h00" class="fa fa-question-circle"></i>
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+                                Billet pour la demi-journée  <i data-toggle="tooltip" data-placement="top" title="De 14h00 à 18h00" class="fa fa-question-circle"></i>
+                            </label>
+                        </div>
+                    </div>
+
+                    <h3>Nombre de billet</h3>
+                    <div class="form-group">
+                        <input type="number" class="form-control" id="numberTicket" max="1000">
+                    </div>
+
+                    <button type="submit" id="bookingNext" name="bookingNext" class="btn btn-info">Suite</button>
                 </div>
+                <!-- end col-md-6 -->
+
+
+
             </form>
+            <!-- end Form -->
         </div>
     </section>
 {% endblock %}
 
 {% block javascripts %}
     <script>
-        $('.datepicker').datepicker({
+        $('.container .input-group.date').datepicker({
             language: 'fr',
-            daysOfWeekDisabled: "0"
+            daysOfWeekDisabled: "0",
+            startDate: "today",
+            todayBtn: "linked"
         });
     </script>
 {% endblock %}
