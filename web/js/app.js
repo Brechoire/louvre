@@ -31,7 +31,6 @@ $(document).ready(function(){
 
         $('#reset').click(function () {
             $('#info-visitor').remove();
-            console.log('Test');
             $('#reset').remove();
             $('#button').prepend('<a id="bookingNext" class="btn btn-info">Suite</a>');
         });
