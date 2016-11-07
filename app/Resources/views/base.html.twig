@@ -41,10 +41,34 @@
         <div class="content">
             <h1>Réservation des billets</h1>
             <p class="margin-bottom">Commander directement vos billets !</p>
-            <p><a class="btn btn-white">Voir les tarifs</a></p>
+            <p><a class="btn btn-white" data-toggle="modal" data-target="#tarif-modal">Voir les tarifs</a></p>
         </div>
     </div>
 </div>
+
+<!-- *** TAFIF MODAL ***_________________________________________________________
+    -->
+<div id="tarif-modal" tabindex="-1" role="dialog" aria-labelledby="Tarif" aria-hidden="true" class="modal fade">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" data-dismiss="modal" aria-hidden="true" class="close">×</button>
+                <h4 id="Tarif" class="modal-title text-center">Liste des tarifs</h4>
+            </div>
+            <div class="modal-body">
+                <p class="text-center text-muted">
+                <ul>
+                    <li>Tarif « normal » à partir de 12 ans à <strong>16 €</strong></li>
+                    <li>Tarif « enfant » à partir de 4 ans et jusqu’à 12 ans, à <strong>8 €</strong> (l’entrée est gratuite pour les enfants de moins de 4 ans)</li>
+                    <li>Tarif « senior » à partir de 60 ans pour <strong>12  €</strong></li>
+                    <li>Tarif « réduit » de <strong>10 €</strong> accordé dans certaines conditions (étudiant, employé du musée, d’un service du Ministère de la Culture, militaire…)</li>
+                </ul>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- *** TARIF MODAL END ***-->
 
 {% block body %}{% endblock %}
 <!-- Javascript files-->
