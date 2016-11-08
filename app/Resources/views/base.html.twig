@@ -56,7 +56,7 @@
                 <h4 id="Tarif" class="modal-title text-center">Liste des tarifs</h4>
             </div>
             <div class="modal-body">
-                <p class="text-center text-muted">
+                <p class="text-center">
                 <ul>
                     <li>Tarif « normal » à partir de 12 ans à <strong>16 €</strong></li>
                     <li>Tarif « enfant » à partir de 4 ans et jusqu’à 12 ans, à <strong>8 €</strong> (l’entrée est gratuite pour les enfants de moins de 4 ans)</li>
@@ -78,6 +78,12 @@
 <script src="{{ asset('js/bootstrap-datepicker.js') }}"></script>
 <script src="{{ asset('locales/bootstrap-datepicker.fr.min.js') }}"></script>
 <script src="{{ asset('js/app.js') }}"></script>
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    })
+</script>
+
 {% block javascripts %}{% endblock %}
 </body>
 </html>

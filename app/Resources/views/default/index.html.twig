@@ -7,59 +7,86 @@
             <!-- Start Form -->
             <form action="#" method="post">
 
-                <!-- Start col-md-6 -->
-                <div class="col-md-6 dc">
+                <div class="row">
+                    <!-- Start col-md-12 -->
+                    <div class="col-md-10 col-md-offset-1 dc" id="informations">
 
-                    <h3>Date de la visite</h3>
+                        <div id="recap">
 
-                    <div class="form-group">
-                        <div class="datepicker" id="datepicker" name="bookingDate" data-date="{{ "now"|date("d/m/Y") }}"></div>
-                        <div class="input-group date">
-                            <input type="text" class="form-control" data-date="{{ "now"|date("d/m/Y") }}">
-                        <span class="input-group-addon">
-                            <i class="fa fa-calendar"></i>
-                        </span>
                         </div>
-                    </div>
 
-                    <h3>Durée de la visite</h3>
+                        <div id="info-booking">
 
-                    <div class="form-group">
-                        <div class="radio">
-                            <label>
-                                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-                                Billet pour la journée <i data-toggle="tooltip" data-placement="top" title="De 09h00 à 18h00" class="fa fa-question-circle"></i>
-                            </label>
+                            <div class="col-md-4">
+
+                                <h3>Date de la visite</h3>
+
+                                <div class="form-group">
+                                    <div class="datepicker" id="datepicker" name="bookingDate" data-date="{{ "now"|date("d/m/Y") }}"></div>
+                                    <div class="input-group date">
+                                        <input type="text" id="dateBooking" class="form-control" data-date="{{ "now"|date("d/m/Y") }}">
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                    </span>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-4">
+
+                                <h3>Durée de la visite</h3>
+
+                                <div class="form-group">
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="optionsRadios" id="optionsRadios1" value="journee" checked>
+                                            Billet pour la journée <i data-toggle="tooltip" data-placement="top" title="De 09h00 à 18h00" class="fa fa-question-circle"></i>
+                                        </label>
+                                    </div>
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="optionsRadios" id="optionsRadios2" value="demijournee">
+                                            Billet pour la demi-journée  <i data-toggle="tooltip" data-placement="top" title="De 14h00 à 18h00" class="fa fa-question-circle"></i>
+                                        </label>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-4">
+
+                                <h3>Nombre de billet</h3>
+                                <div class="form-group">
+                                    <input type="number" class="form-control" id="numberTicket" value="" min="0" max="1000">
+                                </div>
+
+                                <div id="button">
+                                    <a id="bookingNext" class="btn btn-info pull-right">Suite</a>
+                                </div>
+
+                            </div>
+
                         </div>
-                        <div class="radio">
-                            <label>
-                                <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-                                Billet pour la demi-journée  <i data-toggle="tooltip" data-placement="top" title="De 14h00 à 18h00" class="fa fa-question-circle"></i>
-                            </label>
-                        </div>
-                    </div>
 
-                    <h3>Nombre de billet</h3>
-                    <div class="form-group">
-                        <input type="number" class="form-control" id="numberTicket" value="" min="0" max="1000">
-                    </div>
 
-                    <div id="button">
-                        <a id="bookingNext" class="btn btn-info">Suite</a>
-                    </div>
 
+                    </div>
+                    <!-- end col-md-12 -->
                 </div>
-                <!-- end col-md-6 -->
 
-                <!-- Start col-md-6 -->
-                <div class="col-md-6">
-                    <h3>Formulaire d'inscription</h3>
+                <div class="row">
+                    <!-- Start col-md-8 -->
+                    <div class="col-md-10 col-md-offset-1">
 
-                    <span id="error"></span>
-                    <div id="info-visitor"></div>
 
+                        <span id="error"></span>
+                        <div id="info-visitor"></div>
+
+                    </div>
+                    <!-- end col-md-6 -->
                 </div>
-                <!-- end col-md-6 -->
+
 
             </form>
             <!-- end Form -->
