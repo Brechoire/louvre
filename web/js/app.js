@@ -15,7 +15,13 @@ $(document).ready(function(){
     var jour    = now.getDate();
     var heure   = now.getHours();
     var minute  = now.getMinutes();
-    var dateText = (jour + '/' + mois + '/' + annee);
+
+    if(jour < 10){
+        jour = '0' + jour;
+        var dateText = (jour + '/' + mois + '/' + annee);
+    }else{
+        var dateText = (jour + '/' + mois + '/' + annee);
+    }
     var dateJour = String(dateText);
 
     /**
@@ -51,26 +57,33 @@ $(document).ready(function(){
 
         }else{
 
+            if(dateJour == dateBooking)
+            {
+                if(radio == "journee")
+                {
+                    if (heure > 14)
+                    {
+                        if (msgError == '')
+                        {
+                            $('#error').prepend('<div class="alert alert-danger text-center" role="alert">Commande Impossible pour la journée merci de choisir la demi-journée</div>');
+                            console.log('erreur commande');
+                        }
+                    }
+                }
+            }
+
             // suppression message d'erreur
             $('#error').remove();
 
             // suppression du formulaire des dates & co
             $('#info-booking').remove();
 
-            console.log('Date réservation : ' + dateBooking + ' date du jour : ' + dateJour);
-
-            if(dateJour == dateBooking)
-            {
-                console('Heure : ' + heure);
-            }
-
-
-
 
             // Récapitulatif
             if(radio == "journee"){
                 $('#recap').prepend('<div class="alert alert-info" role="alert"> <strong>Informations commande : </strong> Nombre de ticket : ' + numberTicket + '. > Date de la visite le : ' + dateBooking + ' . > Durée : journée (9h00 à 18h00)</div>');
-            }else{
+            }else
+            {
                 $('#recap').prepend('<div class="alert alert-info" role="alert"> <strong>Informations commande : </strong> Nombre de ticket : ' + numberTicket + '. > Date de la visite le : ' + dateBooking + ' . > Durée : demi-journée (14h00 à 18h00)</div>');
             }
 
