@@ -61,14 +61,21 @@ $(document).ready(function(){
             {
                 if(radio == "journee")
                 {
+                    $('#recap').prepend('<div class="alert alert-info" role="alert"> <strong>Informations commande : </strong> Nombre de ticket : ' + numberTicket + '. > Date de la visite le : ' + dateBooking + ' . > Durée : journée (9h00 à 18h00)</div>');
+
                     if (heure > 14)
                     {
                         if (msgError == '')
                         {
+                            $('<span id="error"></span>').prependTo($('#nextBooking'));
                             $('#error').prepend('<div class="alert alert-danger text-center" role="alert">Commande Impossible pour la journée merci de choisir la demi-journée</div>');
                             console.log('erreur commande');
                         }
                     }
+                }
+                else
+                {
+                    $('#recap').prepend('<div class="alert alert-info" role="alert"> <strong>Informations commande : </strong> Nombre de ticket : ' + numberTicket + '. > Date de la visite le : ' + dateBooking + ' . > Durée : demi-journée (14h00 à 18h00)</div>');
                 }
             }
 
@@ -77,15 +84,6 @@ $(document).ready(function(){
 
             // suppression du formulaire des dates & co
             $('#info-booking').remove();
-
-
-            // Récapitulatif
-            if(radio == "journee"){
-                $('#recap').prepend('<div class="alert alert-info" role="alert"> <strong>Informations commande : </strong> Nombre de ticket : ' + numberTicket + '. > Date de la visite le : ' + dateBooking + ' . > Durée : journée (9h00 à 18h00)</div>');
-            }else
-            {
-                $('#recap').prepend('<div class="alert alert-info" role="alert"> <strong>Informations commande : </strong> Nombre de ticket : ' + numberTicket + '. > Date de la visite le : ' + dateBooking + ' . > Durée : demi-journée (14h00 à 18h00)</div>');
-            }
 
             $('#info-visitor').prepend('<h3 class="text-center">Formulaire d\'inscription</h3>');
 
