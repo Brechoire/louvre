@@ -66,6 +66,14 @@ $(document).ready(function(){
                     {
                         $('#recap').prepend('<div class="alert alert-info" role="alert"> <strong>Informations commande : </strong> Nombre de ticket : ' + numberTicket + '. > Date de la visite le : ' + dateBooking + ' . > Durée : journée (9h00 à 18h00)</div>');
                         console.log('success');
+                        while (tour <= numberTicket)
+                        {
+                            $('#bookingNext').remove();
+
+                            $('#info-visitor').append('<h4>Informations sur le visiteur ' + tour + '</h4><div class="form-group"><label for="lastname">Nom</label><input type="text" class="form-control" id="lastname"></div><div class="form-group"><label for="firstname">Prénom</label><input type="text" class="form-control" id="firstname"></div><div class="form-group"><label for="firstname">Votre pays</label><select id="" name="" class="form-control"><option value="FR" selected>France</option><option value="ZA">Belgique</option><option value="ZA">Suisse</option></select> </div> <div class="form-group"><label for="champ">Votre date de naissance</label> <input type="text" id="champ" class="form-control date-anniversaire" name="date"></div> <div class="checkbox"><label><input type="checkbox"> Tarif réduit</label></div></div> <hr class="louvre">');
+
+                            tour++;
+                        }
                     }else
                     {
                         $('<span id="error"></span>').prependTo($('#nextBooking'));
@@ -73,9 +81,21 @@ $(document).ready(function(){
                         console.log('erreur commande');
                     }
 
+                }else{
+                    $('#recap').prepend('<div class="alert alert-info" role="alert"> <strong>Informations commande : </strong> Nombre de ticket : ' + numberTicket + '. > Date de la visite le : ' + dateBooking + ' . > Durée : demi-journée (9h00 à 18h00)</div>');
+
+                    console.log('demi journée');
+                    while (tour <= numberTicket)
+                    {
+                        $('#bookingNext').remove();
+
+                        $('#info-visitor').append('<h4>Informations sur le visiteur ' + tour + '</h4><div class="form-group"><label for="lastname">Nom</label><input type="text" class="form-control" id="lastname"></div><div class="form-group"><label for="firstname">Prénom</label><input type="text" class="form-control" id="firstname"></div><div class="form-group"><label for="firstname">Votre pays</label><select id="" name="" class="form-control"><option value="FR" selected>France</option><option value="ZA">Belgique</option><option value="ZA">Suisse</option></select> </div> <div class="form-group"><label for="champ">Votre date de naissance</label> <input type="text" id="champ" class="form-control date-anniversaire" name="date"></div> <div class="checkbox"><label><input type="checkbox"> Tarif réduit</label></div></div> <hr class="louvre">');
+
+                        tour++;
+                    }
                 }
 
-                $('#recap').prepend('<div class="alert alert-info" role="alert"> <strong>Informations commande : </strong> Nombre de ticket : ' + numberTicket + '. > Date de la visite le : ' + dateBooking + ' . > Durée : journée (9h00 à 18h00)</div>');
+
 
             }
 
@@ -84,18 +104,6 @@ $(document).ready(function(){
 
             // suppression du formulaire des dates & co
             $('#info-booking').remove();
-
-            $('#info-visitor').prepend('<h3 class="text-center">Formulaire d\'inscription</h3>');
-
-            while (tour <= numberTicket)
-            {
-                $('#bookingNext').remove();
-
-                $('#info-visitor').append('<h4>Informations sur le visiteur ' + tour + '</h4><div class="form-group"><label for="lastname">Nom</label><input type="text" class="form-control" id="lastname"></div><div class="form-group"><label for="firstname">Prénom</label><input type="text" class="form-control" id="firstname"></div><div class="form-group"><label for="firstname">Votre pays</label><select id="" name="" class="form-control"><option value="FR" selected>France</option><option value="ZA">Belgique</option><option value="ZA">Suisse</option></select> </div> <div class="form-group"><label for="champ">Votre date de naissance</label> <input type="text" id="champ" class="form-control date-anniversaire" name="date"></div> <div class="checkbox"><label><input type="checkbox"> Tarif réduit</label></div></div> <hr class="louvre">');
-
-                tour++;
-            }
-
 
         }
 
