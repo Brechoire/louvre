@@ -22,5 +22,13 @@ class BookingController extends Controller
      */
     public function indexAction()
     {
+        $repository = $this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository('BookingBundle:Booking');
+
+        $info = $repository->nbTicket();
+        dump($info);
+        return array('info' => $info);
     }
 }

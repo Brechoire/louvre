@@ -31,14 +31,14 @@ class Booking
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date_commande", type="date")
+     * @ORM\Column(name="date_commande", type="datetime")
      */
     private $dateCommande;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date_visite", type="date")
+     * @ORM\Column(name="date_visite", type="datetime")
      */
     private $dateVisite;
 
