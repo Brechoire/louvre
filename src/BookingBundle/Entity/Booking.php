@@ -48,6 +48,13 @@ class Booking
      * @ORM\Column(name="nombre_billet", type="integer")
      */
     private $nombreBillet;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="periode", type="string", length=255)
+     */
+    private $periode;
 
 
     /**
@@ -155,5 +162,33 @@ class Booking
     {
         return $this->nombreBillet;
     }
+
+    /**
+     * Set periode
+     *
+     * @param string $periode
+     *
+     * @return Booking
+     */
+    public function setPeriode($periode)
+    {
+        $this->periode = $periode;
+
+        return $this;
+    }
+
+    /**
+     * Get periode
+     *
+     * @return string
+     */
+    public function getPeriode()
+    {
+        return $this->periode;
+    }
+
+
+
+
 }
 
