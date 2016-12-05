@@ -7,6 +7,6 @@ services:
 #    service_name:
 #        class: AppBundle\Directory\ClassName
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
-services:
-    booking.formbooking:
-        class: BookingBundle\Service\FormBooking
+    booking.app:
+        class: BookingBundle\Service\BookingService
+        arguments: ["@doctrine.orm.entity_manager", "@form.factory", "@Session"]

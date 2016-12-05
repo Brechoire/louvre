@@ -3,92 +3,81 @@
 {% block body %}
     <section>
         <div class="container">
+            <div class="row">
 
-            <!-- Start Form -->
-            <form action="#" method="post">
-                {{ form_start(form, {'attr': {'class': 'form-group'} }) }}
-                {{ form_widget(form) }}
-                <button type="submit" class="btn btn-primary">Suivant</button>
-                {{ form_end(form) }}
-                <div class="row">
+                  {{ form_start(form) }}
 
-                    <!-- Start col-md-12 -->
-                    <div class="col-md-10 col-md-offset-1 " id="informations">
+                    <div class="row">
+                        <div class="col-md-10 col-md-offset-1">
+                            {% for message in app.session.flashbag.get('error') %}
+                                <div class="alert alert-danger">{{message}}</div>
+                            {% endfor %}
+                        </div>
+                        <!-- Start col-md-12 -->
+                        <div class="col-md-10 col-md-offset-1 " id="informations">
 
-                        <div id="info-booking" class="col-md-10 col-md-offset-1 dc">
+                            <div id="info-booking" class="col-md-12 dc">
 
-                            <div class="col-md-4">
+                                <div class="col-md-3">
 
-                                <h3>Date de la visite</h3>
+                                    <h3>Date de la visite</h3>
 
-                                <div class="form-group">
-                                    <div class="datepicker" id="datepicker" name="bookingDate" data-date="{{ "now"|date("d/m/Y") }}"></div>
-                                    <div class="input-group date">
-                                        <input type="text" id="dateBooking" class="form-control" data-date="{{ "now"|date("d/m/Y") }}">
-                                    <span class="input-group-addon">
-                                        <i class="fa fa-calendar"></i>
-                                    </span>
+                                    <div class="form-group">
+                                        {{ form_widget(form.dateVisite, {'attr': {'class': 'input-group form-control date'}}) }}
                                     </div>
+
+                                </div>
+
+                                <div class="col-md-3">
+
+                                    <h3>Durée de la visite</h3>
+
+                                    <div class="form-group">
+                                        {{ form_widget(form.periode, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+
+                                </div>
+
+                                <div class="col-md-3">
+
+                                    <h3>Nombre de billet</h3>
+                                    <div class="form-group">
+                                        {{ form_widget(form.nombreBillet, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+
+                                </div>
+
+                                <div class="col-md-3">
+
+                                    <h3>Votre email</h3>
+                                    <div class="form-group">
+                                        {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Envoyer</button>
+
                                 </div>
 
                             </div>
 
-                            <div class="col-md-4">
-
-                                <h3>Durée de la visite</h3>
-
-                                <div class="form-group">
-                                    <div class="radio">
-                                        <label>
-                                            <input type="radio" name="optionsRadios" id="optionsRadios1" value="journee" checked>
-                                            Billet pour la journée <i data-toggle="tooltip" data-placement="top" title="De 09h00 à 18h00" class="fa fa-question-circle"></i>
-                                        </label>
-                                    </div>
-                                    <div class="radio">
-                                        <label>
-                                            <input type="radio" name="optionsRadios" id="optionsRadios2" value="demijournee">
-                                            Billet pour la demi-journée  <i data-toggle="tooltip" data-placement="top" title="De 14h00 à 18h00" class="fa fa-question-circle"></i>
-                                        </label>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <div class="col-md-4">
-
-                                <h3>Nombre de billet</h3>
-                                <div class="form-group">
-                                    <input type="number" class="form-control" id="numberTicket" name="numberTicket" value="" min="0" max="1000">
-                                </div>
-
-                                <div id="button">
-                                    <a id="bookingNext" class="btn btn-info pull-right">Suite</a>
-                                </div>
-
-                            </div>
+                            <div id="recap"></div>
 
                         </div>
 
-                        <div id="recap"></div>
+                        {{ form_end(form) }}
 
                     </div>
-                    <!-- end col-md-12 -->
-                </div>
 
-                <div class="row">
-                    <!-- Start col-md-8 -->
-                    <div class="col-md-10 col-md-offset-1" id="nextBooking">
+                    <div class="row">
+                        <div class="col-md-10 col-md-offset-1" id="nextBooking">
 
-                        <span id="error"></span>
-                        <div id="info-visitor"></div>
+                            <span id="error"></span>
+                            <div id="info-visitor"></div>
 
+                        </div>
                     </div>
-                    <!-- end col-md-6 -->
-                </div>
 
 
-            </form>
-            <!-- end Form -->
+            </div>
         </div>
     </section>
 {% endblock %}

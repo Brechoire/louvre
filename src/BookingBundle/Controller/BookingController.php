@@ -15,6 +15,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 class BookingController extends Controller
 {
@@ -25,6 +26,9 @@ class BookingController extends Controller
      */
     public function indexAction(Request $request)
     {
+        $unset = $this->get('booking.app')->unsetSession($request);
+        dump($_SESSION);
+
         $repository = $this
             ->getDoctrine()
             ->getManager()
@@ -32,27 +36,28 @@ class BookingController extends Controller
 
         $info = $repository->nbTicket();
 
+        $form = $this->get('booking.app')->infoBooking($request);
 
-        /**
-         * Formulaire de réservation
-         */
-        $booking = new Booking();
-        $form = $this->createForm(FormBooking::class, $booking);
-
-        $form->handleRequest($request);
-
-        /**
-         * Dump du formulaire
-         */
-        if ($form->isSubmitted() && $form->isValid()) {
-            dump($form->getData());
-            die;
+        if ($form->isValid())
+        {
+            dump($_SESSION);
+//            return $this->redirectToRoute('etapeTwo');
         }
 
         return array(
             'info' => $info,
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'unset' => $unset
         );
+    }
+
+    /**
+     * @Route("/etapeTwo", name="etapeTwo")
+     * @Template("default/etapeTwo.html.twig")
+     */
+    public function etapeTwoIndex()
+    {
+        dump($_POST);
     }
 
 }
