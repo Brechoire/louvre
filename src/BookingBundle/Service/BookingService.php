@@ -52,7 +52,6 @@ class BookingService
      */
     public function infoBooking(Request $request)
     {
-//        $session = new Session();
         $result = new Booking();
 
         $form = $this->form->create(FormBooking::class, $result);
@@ -61,44 +60,35 @@ class BookingService
 
         if ($request->getMethod() == 'POST')
         {
-            $periode = $form['periode']->getData();
-            $dateVisite = $form['dateVisite']->getData();
-
-            if ($periode == 1 && $dateVisite == '04/12/2016')
+            if ($form->isValid() && $form->isSubmitted())
             {
-                if ($form->isValid() && $form->isSubmitted())
+                $form->getData();
+                $periode = $form['periode']->getData();
+                $dateVisite = $form['dateVisite']->getData();
+
+                if ($periode == 1 && $dateVisite == '07/12/2016')
                 {
-
-                    if (date('G') <= 10)
+                    if (date('G') < 14)
                     {
-                        $this->session->set([
-                            'dateVisite' => $result->getDateVisite(),
-                            'periode' => $result->getPeriode(),
-                            'nombreTicket' => $result->getNombreBillet(),
-                            'email' => $result->getEmail()
-                        ]);
-//                        $this->session->set('dateVisite', $result->getDateVisite());
-//                        $this->session->set('periode', $result->getPeriode());
-//                        $this->session->set('nombreTicket', $result->getNombreBillet());
-//                        $this->session->set('email', $result->getEmail());
+                        $this->session->set('dateVisite', $form['dateVisite']->getData());
+                        $this->session->set('periode', $form['periode']->getData());
+                        $this->session->set('nombreBillet', $form['nombreBillet']->getData());
+                        $this->session->set('email', $form['email']->getData());
+                        $this->session->set('valide', '1');
 
-                    }else{
 
-                        $this->session->getFlashBag()->add('error', 'Attention vous ne pouvez pas réserver pour la periode "Journée" après 14 heure');
+                        $this->session->getFlashBag()->add('success', 'Formulaire valide !');
 
                     }
+                }else{
+                    $this->session->set('dateVisite', $form['dateVisite']->getData());
+                    $this->session->set('periode', $form['periode']->getData());
+                    $this->session->set('nombreBillet', $form['nombreBillet']->getData());
+                    $this->session->set('email', $form['email']->getData());
+                    $this->session->set('valide', '1');
+                    $this->session->getFlashBag()->add('success', 'Formulaire valide !');
+
                 }
-                $this->session->set([
-                    'dateVisite' => $result->getDateVisite(),
-                    'periode' => $result->getPeriode(),
-                    'nombreTicket' => $result->getNombreBillet(),
-                    'email' => $result->getEmail()
-                ]);
-//                    $this->session->set('dateVisite', $result->getDateVisite());
-//                    $this->session->set('periode', $result->getPeriode());
-//                    $this->session->set('nombreTicket', $result->getNombreBillet());
-//                    $this->session->set('email', $result->getEmail());
-                $this->session->getFlashBag()->add('error', 'Validation ok');
 
             }
         }
@@ -114,7 +104,7 @@ class BookingService
     {
 
         if ($request->hasSession()){
-            $request->getSession()->remove('nombreTicket');
+            $request->getSession()->remove('nombreBillet');
             $request->getSession()->remove('dateValide');
             $request->getSession()->remove('dateVisite');
             $request->getSession()->remove('email');

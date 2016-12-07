@@ -4,55 +4,74 @@
     <section>
         <div class="container">
             <div class="row">
-                <div class="col-md-8 col-md-offset-2">
-                    <div class="alert alert-info" role="alert">
-                        <strong>Informations commande : </strong>
-                        Nombre de ticket : {{ app.session.get('nombreTicket') }} >
-                        Date de la visite le : {{ app.session.get('dateVisite') }} >
-                        Durée :
-                        {% if app.session.get('periode') == 1 %}
-                            Journée
-                        {% else %}
-                            Demi-journée
-                        {% endif %}
+                <div class="col-md-10 col-md-offset-1">
+                    {% for message in app.session.flashbag.get('success') %}
+                        <div class="alert alert-success">{{message}}</div>
+                    {% endfor %}
+                </div>
+
+                {% if app.session.get('valide') == 1 %}
+
+                    <div class="col-md-8 col-md-offset-2">
+                        <div class="alert alert-info" role="alert">
+                            <strong>Informations commande : </strong>
+                            Nombre de ticket : {{ app.session.get('nombreBillet') }} >
+                            Date de la visite le : {{ app.session.get('dateVisite') }} >
+                            Durée :
+                            {% if app.session.get('periode') == 1 %}
+                                Journée
+                            {% else %}
+                                Demi-journée
+                            {% endif %}
+                        </div>
+                        <a href="{{ path('booking') }}" class="btn btn-danger">Annuler</a></div>
+
+                    <div class="col-md-8 col-md-offset-2">
+                        {% for i in 1.. app.session.get('nombreTicket') %}
+
+                            <h4>Informations sur le visiteur {{ i }}</h4>
+
+                            <div class="form-group">
+                                <label for="lastname">Nom</label>
+                                <input type="text" class="form-control" id="lastname" name="lastname[{{ i }}]">
+                            </div>
+                            <div class="form-group">
+                                <label for="firstname">Prénom</label>
+                                <input type="text" class="form-control" id="firstname" name="firstname[{{ i }}]">
+                            </div>
+                            <div class="form-group">
+                                <label for="firstname">Votre pays</label>
+                                <select id="" name="country[{{ i }}]" class="form-control">
+                                    <option value="FR" selected>France</option>
+                                    <option value="ZA">Belgique</option>
+                                    <option value="ZA">Suisse</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="champ">Votre date de naissance</label>
+                                <input type="text" id="champ" class="form-control date-anniversaire" name="date[{{ i }}]">
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="tarif[{{ i }}]"> Tarif réduit
+                                </label>
+                            </div>
+
+
+                            <hr class="louvre">
+                        {% endfor %}
                     </div>
-                    <a href="{{ path('booking') }}" class="btn btn-danger">Annuler</a></div>
+
+
+                {% else %}
+
+                    <div class="alert alert-danger">Attention ! Il n'est pas  possible de commander un billet en tarif journée a partir  de 14 heures pour  le jour  meme</div>
+                    <a href="{{ path('booking') }}" class="btn btn-danger">Retour en arrière</a>
+
+                {% endif %}
+
             </div>
-            <div class="col-md-8 col-md-offset-2">
-                {% for i in 1.. app.session.get('nombreTicket') %}
 
-                    <h4>Informations sur le visiteur {{ i }}</h4>
-
-                    <div class="form-group">
-                        <label for="lastname">Nom</label>
-                        <input type="text" class="form-control" id="lastname" name="lastname[{{ i }}]">
-                    </div>
-                    <div class="form-group">
-                        <label for="firstname">Prénom</label>
-                        <input type="text" class="form-control" id="firstname" name="firstname[{{ i }}]">
-                    </div>
-                    <div class="form-group">
-                        <label for="firstname">Votre pays</label>
-                        <select id="" name="country[{{ i }}]" class="form-control">
-                            <option value="FR" selected>France</option>
-                            <option value="ZA">Belgique</option>
-                            <option value="ZA">Suisse</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="champ">Votre date de naissance</label>
-                        <input type="text" id="champ" class="form-control date-anniversaire" name="date[{{ i }}]">
-                    </div>
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox" name="tarif[{{ i }}]"> Tarif réduit
-                        </label>
-                    </div>
-
-
-                    <hr class="louvre">
-                {% endfor %}
-            </div>
         </div>
     </section>
 {% endblock %}

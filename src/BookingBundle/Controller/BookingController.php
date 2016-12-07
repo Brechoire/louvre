@@ -27,21 +27,19 @@ class BookingController extends Controller
     public function indexAction(Request $request)
     {
         $unset = $this->get('booking.app')->unsetSession($request);
-        dump($_SESSION);
+     //  dump($_SESSION);
 
-        $repository = $this
-            ->getDoctrine()
-            ->getManager()
-            ->getRepository('BookingBundle:Booking');
-
-        $info = $repository->nbTicket();
+      $repository = $this
+          ->getDoctrine()
+          ->getManager()
+          ->getRepository('BookingBundle:Booking');
+    $info = $repository->nbTicket();
 
         $form = $this->get('booking.app')->infoBooking($request);
 
         if ($form->isValid())
         {
-            dump($_SESSION);
-//            return $this->redirectToRoute('etapeTwo');
+            return $this->redirectToRoute('etapeTwo');
         }
 
         return array(
@@ -57,7 +55,7 @@ class BookingController extends Controller
      */
     public function etapeTwoIndex()
     {
-        dump($_POST);
+        dump($_SESSION);
     }
 
 }
