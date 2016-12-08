@@ -18,7 +18,7 @@ class FormBookingVisitorType extends AbstractType
             ->add('lastname', TextType::class)
             ->add('firstname', TextType::class)
             ->add('birthday', DateType::class)
-            ->add('country', CountryType::classe)
+            ->add('country', CountryType::class)
             ->add('reducedprice', RadioType::class);
     }
 

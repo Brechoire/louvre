@@ -27,13 +27,13 @@ class BookingController extends Controller
     public function indexAction(Request $request)
     {
         $unset = $this->get('booking.app')->unsetSession($request);
-     //  dump($_SESSION);
+        //  dump($_SESSION);
 
-      $repository = $this
-          ->getDoctrine()
-          ->getManager()
-          ->getRepository('BookingBundle:Booking');
-    $info = $repository->nbTicket();
+        $repository = $this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository('BookingBundle:Booking');
+        $info = $repository->nbTicket();
 
         $form = $this->get('booking.app')->infoBooking($request);
 
@@ -53,9 +53,14 @@ class BookingController extends Controller
      * @Route("/etapeTwo", name="etapeTwo")
      * @Template("default/etapeTwo.html.twig")
      */
-    public function etapeTwoIndex()
+    public function etapeTwoIndex(Request $request)
     {
         dump($_SESSION);
+
+        $form = $this->get('booking.app')->formVisitorBooking($request);
+
+        return array('form' => $form->createView());
+
     }
 
 }

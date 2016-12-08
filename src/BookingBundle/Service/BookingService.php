@@ -8,6 +8,7 @@
 
 namespace BookingBundle\Service;
 
+use BookingBundle\Form\FormBookingVisitorType;
 use Doctrine\ORM\EntityManager;
 use BookingBundle\Repository\BookingRepository;
 use Symfony\Component\Form\FormFactory;
@@ -94,6 +95,22 @@ class BookingService
         }
 
         return $form;
+    }
+
+    public function formVisitorBooking(Request $request)
+    {
+        $form = $this->form->create(FormBookingVisitorType::class);
+        $form->handleRequest($request);
+        if ($request->getMethod() == 'POST')
+        {
+            if ($form->isValid() && $form->isSubmitted())
+            {
+
+            }
+        }
+
+        return $form;
+
     }
 
     /**
